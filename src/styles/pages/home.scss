@@ -1,0 +1,40 @@
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  color: $text-color;
+  font-size: 1rem;
+
+  .image-container {
+  }
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 3rem;
+  width: 100%;
+  gap: 3rem;
+  font-size: 1rem;
+}
+.arrow {
+  width: 2rem;
+}
+.home-button {
+  gap: 1rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: $border-radius;
+  border: 2rem 1rem;
+
+  &:hover {
+    border-color: green;
+  }
+}

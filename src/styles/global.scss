@@ -1,0 +1,12 @@
+@import './_variables.scss';
+@import './colors.scss';
+
+@import './pages/home.scss';
+@import './components/navbar.scss';
+
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
