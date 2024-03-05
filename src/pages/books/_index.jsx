@@ -1,17 +1,23 @@
+import BookCard from "../../components/buttons/cards/BookCard";
+import Image from '../../assets/KoyaUni.png'
+import Image2 from '../../assets/download.jpeg'
 export default function Books() {
   const books = [
     {
       id: "1",
-      name: "abdulla",
+      title: "abdulla",
+      cover_image:Image,
     },
     { id: "2", 
-    name: "yaqwb" },
+    title: "yaqwb" ,
+    cover_image:Image2},
+
   ];
 
   return (
-    <div>
+    <div className="book-card-list">
       {books.map((book) => (
-        <div key={book.id}>{book.name}</div>
+     <BookCard key={book.id} title={book.title} cover_image={book.cover_image}/>
       ))}
     </div>
   );

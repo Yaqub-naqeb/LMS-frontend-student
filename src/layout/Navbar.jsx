@@ -18,7 +18,7 @@ const Navbar = () => {
               <NavLink
                 to={page.path}
                 activeClassName="active"
-                className={ page.name==='Login'?'login':'navbar__link'}
+                className={page.name === "Login" ? "login" : "navbar__link"}
               >
                 {page.name}
               </NavLink>
@@ -26,8 +26,6 @@ const Navbar = () => {
           ))}
         </ul>
       </nav>
-
-      {/* <IntialLayout /> */}
     </div>
   );
 };
