@@ -11,3 +11,40 @@
     margin: 0px;
     padding: 0px;
 }
+
+// dynamic route style for books/id
+.book-detail {
+    &__container {
+      display: flex;
+      gap: 2rem;
+      padding: 10rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+      .book-detail__image {
+        flex: 0 0 auto;
+        margin-right: 20px;
+  
+        img {
+          max-width: 200px;
+          height: auto;
+        }
+      }
+  
+      .book-detail__info {
+        flex: 1 1 auto;
+  
+        .book-detail__title {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+  
+        .book-detail__author,
+        .book-detail__publish-date {
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  

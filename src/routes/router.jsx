@@ -2,10 +2,11 @@ import ErrorPage from "../pages/Error";
 import routes from "./routeDefinations";
 import Root from "../pages/Root";
 import Books from "../pages/books/_index";
+import Book, { BookLoader } from '../pages/books/$id'
 import Home from "../pages/home/_index";
 import Login from "../pages/login/_index";
 import Signup from "../pages/signup/_index";
-
+import { booksLoader } from "../pages/books/_index";
 const routesConfig = [
   {
     errorElement: <ErrorPage />,
@@ -22,9 +23,12 @@ const routesConfig = [
             <Books />
        
         ),
-        // loader: booksLoader,
+        loader: booksLoader,
+      },{
+        path:'/books/:id',
+        element:(<Book/>),
+        loader: BookLoader,
       }
-      
       ,{
         path: routes.login.path,
         element:<Login/>
