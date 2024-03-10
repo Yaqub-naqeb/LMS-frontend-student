@@ -48,3 +48,41 @@
     }
   }
   
+  .search {
+    margin-top: 60px;
+    text-align: center;
+  
+    &__input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+      margin-right: 10px;
+      font-size: 16px;
+  
+      &:focus {
+        outline: none;
+        border-color: $bg-text-color;
+      }
+    }
+  
+    &__button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: $bg-text-color;
+      color: $text-color;
+      cursor: pointer;
+      font-size: 16px;
+  transition: all ease-in-out .2s;
+      &:hover {
+        background-color: $bg-text-color;
+        transform: scale(1.09);
+      }
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  
