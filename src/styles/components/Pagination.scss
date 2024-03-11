@@ -11,21 +11,25 @@
       gap: 1rem;
     }
   
+  
     &__item {
       margin: 0 5px;
       display: flex;
       align-items: center;
       font-size: 14px;
-  
-      &--active {
-        font-weight: bold;
-      }
+   
   
       &--disabled {
         opacity: 0.5;
         pointer-events: none;
       }
     }
+    .pagination__item.active {
+   
+      font-weight: bold;
+      color: red !important;
+     
+     }
   
     &__link {
       text-decoration: none;
