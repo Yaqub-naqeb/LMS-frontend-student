@@ -1,8 +1,66 @@
 .book-card-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    row-gap: 2rem;
-    padding:5rem 10rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  row-gap: 2rem;
+  padding: 5rem 10rem;
+}
+
+.search {
+  margin-top: 60px;
+display: flex;
+gap: 1rem;
+
+justify-content: center;
+
+  &__input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    margin-right: 10px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      border-color: $bg-text-color;
+    }
   }
-  
+
+  &__button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: $bg-text-color;
+    color: $text-color;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all ease-in-out 0.2s;
+    &:hover {
+      background-color: $bg-text-color;
+      transform: scale(1.09);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.searchBy {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  label {
+    margin-right: 10px;
+  }
+
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+}
