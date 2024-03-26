@@ -1,0 +1,71 @@
+$primary-color: #303f9f; // Adjust for your desired primary color
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 40vw;
+  background-color: #d0ddb8d4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Add subtle shadow
+}
+
+.signup-form__title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.signup-form__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.signup-form__field {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  
+}
+
+
+.signup-form__label {
+  flex: 0 0 25%; // Allocate some width for labels
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  text-align: right; // Align labels to the right
+}
+
+.signup-form__input {
+  flex: 1; // Remaining space for input field
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.signup-form__submit {
+  padding: 1rem 2rem;
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.signup-form__submit:hover { // Add hover effect for button
+  background-color: darken($primary-color, 10%);
+}

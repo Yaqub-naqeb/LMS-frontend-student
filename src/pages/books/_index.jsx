@@ -9,17 +9,19 @@ export const booksLoader = async ({ request }) => {
   const searchValue = url.searchParams.get("searchValue");
   let currentPage = url.searchParams.get("page");
   const searchBy = url.searchParams.get("searchBy");
-
+  const booking = url.searchParams.get("booking");
+  const genre=url.searchParams.get("genre");
+ 
 
   let booksData = {};
   try {
     booksData = await gettingBooks(
       `http://127.0.0.1:8000/api/books/?${searchBy ? searchBy : "?"}=${
-        searchValue
+          searchValue
           ? searchValue
-          : `&page_size=2&page=${currentPage ? currentPage : 1}`
-      }`
+          : `&page_size=8&page=${currentPage ? currentPage : 1}&is_booked=${booking}&genre=${genre?genre:''}`}`
     );
+  
   } catch (err) {
     console.log(err);
   }
@@ -28,19 +30,25 @@ export const booksLoader = async ({ request }) => {
 };
 
 export default function Books() {
+
+  const booksData = useLoaderData();
+console.log(booksData)
+
+
   let [searchParams, setSearchParams] = useSearchParams();
 
   const [searchValue, setSearchValue] = useState(
     searchParams.get("searchValue") || ""
   );
+ 
 
-  const booksData = useLoaderData();
+
   const totalBooks = booksData.count;
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchBy, setSearchBy] = useState("title");
-  const [booked,SetBooked]=useState('None');
-
-  const totalPages = Math.ceil(totalBooks / 2); // 10 books per page
+  const [searchBy, setSearchBy] = useState(searchParams.get("searchBy")||"title");
+  const [booked, SetBooked] = useState(searchParams.get('booking')||"");
+  const [genreOption, setGenreOption] = useState(searchParams.get("genre")||"");
+  const totalPages = Math.ceil(totalBooks / 8); // 10 books per page
   const handlePageClick = (number) => {
     setCurrentPage(number);
   };
@@ -48,10 +56,10 @@ export default function Books() {
   const handleSearchClick = useCallback(() => {
     const updatedSearchParams = new URLSearchParams(searchParams);
     updatedSearchParams.set("searchBy", searchBy);
-
     updatedSearchParams.set("searchValue", searchValue);
+    updatedSearchParams.set("booking", booked);
     setSearchParams(updatedSearchParams);
-  }, [searchParams, setSearchParams, searchValue, searchBy]);
+  }, [searchParams, setSearchParams, searchValue, searchBy, booked]);
 
   const handleSearchValue = useCallback(
     (e) => {
@@ -61,6 +69,7 @@ export default function Books() {
         const updatedSearchParams = new URLSearchParams(searchParams);
         updatedSearchParams.delete("searchBy");
         updatedSearchParams.delete("searchValue");
+        updatedSearchParams.delete("booking");
         setSearchParams(updatedSearchParams);
       }
     },
@@ -73,12 +82,24 @@ export default function Books() {
     { value: "dewey_decimal", label: "Dewey decimal" },
   ];
 
-  const isBooked=[
-    { value: "none", label: "None" },
-    { value: "booked", label: "Booked" },
-    { value: "Notbooked", label: "Not booked" },
-    
-  ]
+  const isBooked = [
+    { value: "", label: "None" },
+    { value: "true", label: "Booked" },
+    { value: "false", label: "Not booked" },
+  ];
+  const genreOptions = [
+    { id: 1, name: "Science" },
+    { id: 2, name: "Law" },
+    { id: 3, name: "Medicine" },
+    { id: 4, name: "Mathematics" },
+    { id: 5, name: "History" },
+    { id: 6, name: "Literature" },
+    { id: 7, name: "Engineering" },
+    { id: 8, name: "Computer Science" },
+    { id: 9, name: "Psychology" },
+    { id: 10, name: "Economics" },
+  ];
+
 
   const handleSearchOptions = useCallback(
     (option) => {
@@ -89,28 +110,83 @@ export default function Books() {
   const handleIsBookedOptions = useCallback(
     (option) => {
       SetBooked(option.target.value);
+      const updatedSearchParams = new URLSearchParams(searchParams);
+      updatedSearchParams.set("booking", option.target.value);
+      setSearchParams(updatedSearchParams);
+
+
+
     },
-    [SetBooked]
+    [searchParams,setSearchParams]
   );
+
+
+  const handleGenreOption = useCallback(
+    (e) => {
+      setGenreOption(e.target.value);
+      const updatedSearchParams = new URLSearchParams(searchParams);
+      updatedSearchParams.set("genre", e.target.value);
+      setSearchParams(updatedSearchParams);
+    },
+    [setSearchParams, setGenreOption, searchParams]
+  );
+
+
+
+
 
   return (
     <div>
+      <div>
+        <div className="search">
+          <div className="searchBy">
+            <label htmlFor="selectInput">Search By </label>
+            <select
+              id="selectInput"
+              value={searchBy}
+              defaultValue={searchBy}
+              onChange={handleSearchOptions}
+            >
+              {/* <option value="">--Please choose an option--</option> */}
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
+          {/* search */}
+          <div>
+            {" "}
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchValue}
+              onChange={handleSearchValue}
+              className="search__input"
+            />
+            <button
+              type="button"
+              className="search__button"
+              onClick={handleSearchClick}
+            >
+              search
+            </button>
+          </div>
+        </div>
 
-<div>
-
-
-      <div className="search">
-        <div className="searchBy">
-          <label htmlFor="selectInput">Search By </label>
+        <div className="isBooked searchBy">
+          <div>
+          <label htmlFor="selectInput">Filtters</label>
           <select
             id="selectInput"
-            value={searchBy}
-            defaultValue={searchBy}
-            onChange={handleSearchOptions}
+            value={booked}
+            defaultValue={booked}
+            onChange={handleIsBookedOptions}
           >
             {/* <option value="">--Please choose an option--</option> */}
-            {options.map((option) => (
+            {isBooked.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -118,35 +194,29 @@ export default function Books() {
           </select>
         </div>
 
-        {/* search */}
+
+
+{/* genere */}
         <div>
-          {" "}
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchValue}
-            onChange={handleSearchValue}
-            className="search__input"
-          />
-          <button
-            type="button"
-            className="search__button"
-            onClick={handleSearchClick}
+          <select
+            id="selectInput"
+            value={genreOption}
+            defaultValue={genreOption}
+            onChange={handleGenreOption}
           >
-            search
-          </button>
+            {genreOptions.map((option) => (
+              <option key={option.id} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select>
         </div>
+
+
+          </div>
+
+         
       </div>
-
-
-
-
-
-
-</div>
-
-
-
 
       <div className="book-card-list">
         {booksData?.results?.map((book) => (

@@ -1,24 +1,88 @@
 @import './_variables.scss';
 @import './colors.scss';
-
 @import './pages/home.scss';
 @import './components/navbar.scss';
 @import './components/BookCard.scss';
 @import './pages/books.scss';
+@import './pages/signup.scss';
 @import './components/Pagination.scss';
+
+
+@font-face {
+  font-family: Poppins;
+  src: url(../fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: Poppins-bold;
+  src: url(../fonts/Poppins-Bold.ttf);
+}
+@font-face {
+  font-family: Poppins-medium;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
 
 *{
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: Poppins;
+   
+}
+#root-container{
+  padding: 2rem 1rem 5rem 1rem;
 }
 
 // dynamic route style for books/id
 .book-detail {
+  &__button{
+ 
+    text-align: center; 
+    &__btn{
+      padding: 8px 16px;
+  display: inline-block;
+  margin-top: 20px; /* Adjust as needed */
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+    }
+    
+  }
+  .details{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    row-gap: 1rem;
+    padding: 2rem 0;
+  }
+
     &__container {
       display: flex;
-      gap: 2rem;
-      padding: 10rem;
+      justify-content: center;
+      align-items: center;
+      gap: 5rem;
+      padding: 10rem 0 10rem 0;
+      transform: translateX(-5rem);
+  
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
@@ -27,25 +91,36 @@
         margin-right: 20px;
   
         img {
-          max-width: 200px;
+          max-width: 250px;
           height: auto;
+          border-radius: $border-radius;
+
         }
       }
   
       .book-detail__info {
-        flex: 1 1 auto;
+        display: flex; 
+  flex-direction: column; 
+  // align-items: center; 
   
         .book-detail__title {
           font-size: 24px;
-          margin-bottom: 10px;
+          text-align: center; 
+          font-family: Poppins-medium;
+
         }
   
-        .book-detail__author,
+        .book-detail__text,
         .book-detail__publish-date {
           font-size: 16px;
           margin-bottom: 5px;
+          &__label{
+            font-family: Poppins-bold;
+            font-size: large;
+          }
         }
       }
     }
   }
+  
   

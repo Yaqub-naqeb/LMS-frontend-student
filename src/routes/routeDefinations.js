@@ -8,6 +8,10 @@ const routes = {
   root: {
     path: "/",
   },
+  profile:{
+    path:'/profile'
+
+  },
   books: {
     path: "/books",
     bookPage: {

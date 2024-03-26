@@ -1,10 +1,8 @@
+import { useLoaderData } from "react-router-dom";
+import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 
-import {useLoaderData } from 'react-router-dom';
-import { gettingBooks } from '../../api/DataFetcher/BookFetcher';
-
-export const BookLoader=async({ params })=>{
-
-  console.log(params.id)
+export const BookLoader = async ({ params }) => {
+  console.log(params.id);
   let bookData = {};
   try {
     bookData = await gettingBooks(
@@ -15,35 +13,67 @@ export const BookLoader=async({ params })=>{
   }
 
   return bookData;
-
-}
-
-
+};
 
 const BookDetail = () => {
-    const bookData=useLoaderData();
+  const bookData = useLoaderData();
+  console.log(bookData);
 
-  
   return (
     <div className="book-detail">
-    {bookData && (
-      <div className="book-detail__container">
-        <div className="book-detail__image">
-          <img src={bookData.cover_image} alt="Book cover" />
-        </div>
-        <div className="book-detail__info">
-          <h2 className="book-detail__title">{bookData.title}</h2>
-          <p className="book-detail__author">Author: {bookData.author}</p>
-          <p className="book-detail__publish-date">Publish Date: {bookData.publication_date}</p>
-          {/* Add more information as needed */}
-          <div>
-            <button type='button'>Rent</button>
+      {bookData && (
+        <div className="book-detail__container">
+          <div className="book-detail__image">
+            <img src={bookData.cover_image} alt="Book cover" />
+          </div>
+          <div className="book-detail__info">
+            <h2 className="book-detail__title">{bookData.title}</h2>
+            {/* text */}
+            <div className="details">
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Author:</span>{" "}
+                {bookData.author}
+              </p>
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Genre:</span>{" "}
+                {bookData.genre}
+              </p>
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Status:</span>{" "}
+                {bookData.isBooked ? "Unavailable" : "Available"}
+              </p>
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Page Number: </span>{" "}
+                {bookData.page_number}
+              </p>
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Page Code: </span>{" "}
+                {bookData.book_code}
+              </p>
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">
+                  Published Place:
+                </span>{" "}
+                {bookData.published_place}
+              </p>
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Publisher:</span> {bookData.publisher}
+              </p>
+              
+
+              <p className="book-detail__text">
+                <span className="book-detail__text__label">Publish Date:</span>{" "}
+                {bookData.publication_date}
+              </p>
+            </div>
+            <div  className="book-detail__button">
+              <button type="button" className="book-detail__button__btn">Rent</button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
-  </div>
-  )
-}
+      )}
+    </div>
+  );
+};
 
-export default BookDetail
+export default BookDetail;

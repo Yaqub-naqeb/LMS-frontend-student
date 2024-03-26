@@ -4,9 +4,10 @@ import Root from "../pages/Root";
 import Books from "../pages/books/_index";
 import Book, { BookLoader } from '../pages/books/$id'
 import Home from "../pages/home/_index";
-import Login from "../pages/login/_index";
-import Signup from "../pages/signup/_index";
+import Login, { loginAction } from "../pages/login/_index";
+import Signup, { signupAction } from "../pages/signup/_index";
 import { booksLoader } from "../pages/books/_index";
+import UnAuth from "../components/auth/UnAuth";
 const routesConfig = [
   {
     errorElement: <ErrorPage />,
@@ -31,35 +32,21 @@ const routesConfig = [
       }
       ,{
         path: routes.login.path,
-        element:<Login/>
+        element:(
+        <UnAuth>
+        <Login/>
+        </UnAuth>),
+        action:loginAction
       },
       {
         path: routes.signup.path,
-        element:<Signup/>
+        element:(
+          <UnAuth>
+            <Signup/>
+          </UnAuth>
+        ),
+        action:signupAction,
       },
-      // {
-      //   path: routes.staff.path,
-      //   element:<Staff />
-      // },
-
-      // {
-      //   path: routes.login.path,
-      //   element: (
-      //     <UnAuth>
-      //       <Login />
-      //     </UnAuth>
-      //   ),
-      //   action: loginAction,
-      // },
-      // {
-      //   path: routes.signup.path,
-      //   element: (
-      //     <UnAuth>
-      //       <Signup />
-      //     </UnAuth>
-      //   ),
-      //   action: signupAction,
-      // },
     ],
   },
 ];
