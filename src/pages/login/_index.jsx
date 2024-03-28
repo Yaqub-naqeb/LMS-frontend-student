@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Form ,useActionData, useNavigate} from "react-router-dom";
+import { Form ,NavLink,useActionData, useNavigate} from "react-router-dom";
 import { AuthContext } from "../../components/auth/context/AuthContext";
 
 
@@ -80,8 +80,11 @@ const Login = () => {
     <div className="container">
 
 
+
+<div className="right">
+
 <div className="signup-form ">
-    <h2 className="signup-form__title">Login</h2>
+    <h2 className="signup-form__title">Login Form</h2>
     <Form className="signup-form__form" method="post" action="/login">
      
       
@@ -107,9 +110,17 @@ const Login = () => {
         />
       </div>
      
-      <button className="signup-form__submit" type="submit">Sign Up</button>
+    
+      <button className="signup-form__submit" type="submit">Login</button>
+
+      <p>
+      Already have an account? <NavLink to={'/signup'} className={'login'}>Sign Up</NavLink>
+      </p>
     </Form>
+  
   </div>
+
+</div>
 
 
 

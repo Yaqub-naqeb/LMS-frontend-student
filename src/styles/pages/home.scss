@@ -32,6 +32,9 @@
   
 
 }
+.link{
+  text-decoration: none;
+}
 .home-button {
 
   &:hover .arrow{
@@ -47,6 +50,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  
   border: 1.5px solid black;
 
   border-radius: $border-radius;

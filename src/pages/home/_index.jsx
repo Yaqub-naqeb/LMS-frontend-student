@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import koyaImg from "../../assets/KoyaUni.png";
 import HomeButton from "../../components/buttons/HomeButton";
 
@@ -16,9 +17,9 @@ const Home = () => {
       <div>
         <img className="image-container" src={koyaImg} alt="koya university" />
       </div>
-      <div>
+      <NavLink to={'/books'} className={'link'}>
         <HomeButton  name={'Explore Books'}/>
-      </div>
+      </NavLink>
     </div>
   );
 };

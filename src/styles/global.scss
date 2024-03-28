@@ -7,6 +7,42 @@
 @import './pages/signup.scss';
 @import './components/Pagination.scss';
 
+.userInAuth{
+  position: relative; 
+  height: 100vh; 
+  .koyaUni{
+    background-color: black;
+    color: #fff;
+    padding: .8rem 1rem;
+    font-size: 1rem;
+    border-radius: $border-radius;
+    
+  }
+  .navbar{
+    
+    padding: 2.5rem 1rem 5rem 1rem;
+    gap: 23rem;
+    justify-content:space-between;
+    width: 94%;
+  }
+ 
+}
+
+.userInAuth::before {
+  content: "";
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 50%; 
+  height: 100%; 
+  background-image: url('/src/assets/koya\ 1.png'),linear-gradient(to bottom, rgba(208, 221, 184, 0.126), rgba(208, 221, 184, 0.8));
+  background-blend-mode: multiply;
+  background-size: cover; 
+  background-position: center; 
+  z-index: -1; 
+}
+
+
 
 @font-face {
   font-family: Poppins;
@@ -29,9 +65,11 @@
     font-family: Poppins;
    
 }
-#root-container{
+.root-container{
   padding: 2rem 1rem 5rem 1rem;
 }
+
+
 
 // dynamic route style for books/id
 .book-detail {
@@ -100,9 +138,7 @@
   
       .book-detail__info {
         display: flex; 
-  flex-direction: column; 
-  // align-items: center; 
-  
+  flex-direction: column;   
         .book-detail__title {
           font-size: 24px;
           text-align: center; 

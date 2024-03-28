@@ -18,15 +18,18 @@ const Navbar = () => {
   const pages = [
     { id:1,name: "Home", path: routes.root.path },
     { id:2,name: "Books", path: routes.books.path },
-    { id:3,name: "Bookings", path: routes.bookings.path },
+    { id:3,name:"Sign Up", path:routes.signup.path },
+
     { id:4,name:"Login", path:routes.login.path },
   ];
 
   const pagesForAuth = [
     { id:1,name: "Home", path: routes.root.path },
     { id:2,name: "Books", path: routes.books.path },
-    { id:3,name: "Logout", path: 'not available' },
-    { id:4,name:"profile",path:routes.profile.path},
+    { id:3,name: "Bookings", path: routes.bookings.path },
+
+    { id:4,name: "Logout", path: 'not available' },
+    { id:5,name:"profile",path:routes.profile.path},
   ];
   
 
@@ -40,7 +43,7 @@ const pg=isAuthenticated?pagesForAuth:pages;
   return (
     <div>
       <nav className="navbar">
-        <h1>Koya Unversity</h1>
+        <h1 className="koyaUni">Koya Unversity</h1>
         <ul className="navbar__list">
           {pg.map((page) => (
             <li key={page.id} className="navbar__item" onClick={page.name==='Logout'?logout:undefined}>
