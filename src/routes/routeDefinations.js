@@ -18,12 +18,11 @@ const routes = {
       path: "/books/:bookId",
     },
   },
-  // rent: {
-  //   path: "/rent",
-  // },
- 
-  // questions: {
-  //   path: "/questions",
-  // },
+  bookings:{
+    path:"/bookings",
+  
+
+  }
+  
 };
 export default routes;

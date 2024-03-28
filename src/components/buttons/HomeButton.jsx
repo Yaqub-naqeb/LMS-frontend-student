@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types';
 const HomeButton = ({name}) => {
   return (
-    <div>
-      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className='home-button'>
        {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
-       { name} <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 arrow">
+       { name} <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 arrow">
   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
 </svg>
 
-</span>
+
       </button>
-    </div>
+  
   )
 }
 
 export default HomeButton
 HomeButton.propTypes = {
-    name: PropTypes.string.isRequired, // Required string prop
+    name: PropTypes.string.isRequired, 
   };

@@ -18,7 +18,7 @@ const Navbar = () => {
   const pages = [
     { id:1,name: "Home", path: routes.root.path },
     { id:2,name: "Books", path: routes.books.path },
-    { id:3,name: "Signup", path: routes.signup.path },
+    { id:3,name: "Bookings", path: routes.bookings.path },
     { id:4,name:"Login", path:routes.login.path },
   ];
 

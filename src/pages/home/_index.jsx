@@ -17,7 +17,7 @@ const Home = () => {
         <img className="image-container" src={koyaImg} alt="koya university" />
       </div>
       <div>
-        <HomeButton name={'Explore Books'}/>
+        <HomeButton  name={'Explore Books'}/>
       </div>
     </div>
   );

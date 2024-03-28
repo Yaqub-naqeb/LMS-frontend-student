@@ -8,6 +8,7 @@ import Login, { loginAction } from "../pages/login/_index";
 import Signup, { signupAction } from "../pages/signup/_index";
 import { booksLoader } from "../pages/books/_index";
 import UnAuth from "../components/auth/UnAuth";
+import Bookings from "../pages/bookings/_index";
 const routesConfig = [
   {
     errorElement: <ErrorPage />,
@@ -46,7 +47,10 @@ const routesConfig = [
           </UnAuth>
         ),
         action:signupAction,
-      },
+      },{
+        path:routes.bookings.path,
+        element:<Bookings/>
+      }
     ],
   },
 ];
