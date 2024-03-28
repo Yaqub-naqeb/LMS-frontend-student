@@ -2,7 +2,6 @@ import { useLoaderData, useNavigate, useSubmit } from "react-router-dom";
 import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 
 export const BookLoader = async ({ params }) => {
-  console.log(params.id);
   let bookData = {};
   try {
     bookData = await gettingBooks(
@@ -16,26 +15,25 @@ export const BookLoader = async ({ params }) => {
 };
 
 const BookDetail = () => {
-  const submit =useSubmit();
+  const submit = useSubmit();
   const bookData = useLoaderData();
-  const navigate=useNavigate();
-  const submitHandler=()=>{
+  const navigate = useNavigate();
+  const submitHandler = () => {
+    const userId = localStorage.getItem("userId");
 
-    const userId=localStorage.getItem('userId')
-
-   userId?
-   submit({
-    userId:userId,
-    bookId:bookData
-   },
-    {
-     method: "POST",
-     action: "/books",
-   }):navigate('/login')
-
-
-
-  }
+    userId
+      ? submit(
+          {
+            userId: userId,
+            bookId: bookData.id,
+          },
+          {
+            method: "POST",
+            action: "/books",
+          }
+        )
+      : navigate("/login");
+  };
 
   return (
     <div className="book-detail">
@@ -75,17 +73,23 @@ const BookDetail = () => {
                 {bookData.published_place}
               </p>
               <p className="book-detail__text">
-                <span className="book-detail__text__label">Publisher:</span> {bookData.publisher}
+                <span className="book-detail__text__label">Publisher:</span>{" "}
+                {bookData.publisher}
               </p>
-              
 
               <p className="book-detail__text">
                 <span className="book-detail__text__label">Publish Date:</span>{" "}
                 {bookData.publication_date}
               </p>
             </div>
-            <div  className="book-detail__button">
-              <button type="button" className="book-detail__button__btn" onClick={submitHandler}>Booking</button>
+            <div className="book-detail__button">
+              <button
+                type="button"
+                className="book-detail__button__btn"
+                onClick={submitHandler}
+              >
+                Booking
+              </button>
             </div>
           </div>
         </div>

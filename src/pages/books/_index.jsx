@@ -10,18 +10,19 @@ export const booksLoader = async ({ request }) => {
   let currentPage = url.searchParams.get("page");
   const searchBy = url.searchParams.get("searchBy");
   const booking = url.searchParams.get("booking");
-  const genre=url.searchParams.get("genre");
- 
+  const genre = url.searchParams.get("genre");
 
   let booksData = {};
   try {
     booksData = await gettingBooks(
       `http://127.0.0.1:8000/api/books/?${searchBy ? searchBy : "?"}=${
-          searchValue
+        searchValue
           ? searchValue
-          : `&page_size=8&page=${currentPage ? currentPage : 1}&is_booked=${booking}&genre=${genre?genre:''}`}`
+          : `&page_size=8&page=${
+              currentPage ? currentPage : 1
+            }&is_booked=${booking}&genre=${genre ? genre : ""}`
+      }`
     );
-  
   } catch (err) {
     console.log(err);
   }
@@ -29,11 +30,8 @@ export const booksLoader = async ({ request }) => {
   return booksData;
 };
 
-
-
-export const BookAction=async({request})=>{
+export const BookAction = async ({ request }) => {
   if (request.method !== "POST") return {};
-
 
   const formData = await request.formData();
 
@@ -49,14 +47,13 @@ export const BookAction=async({request})=>{
       body: JSON.stringify({
         booking_date: null,
         deadline_date: null,
-        user:{
-          id:formDataObject.userId
-
+        user: {
+          id: formDataObject.userId,
         },
-        book:{
-          id:formDataObject.bookId
+        book: {
+          id: formDataObject.bookId,
         },
-        isPending:true
+        isPending: true,
       }),
     });
 
@@ -68,21 +65,9 @@ export const BookAction=async({request})=>{
   }
 
   return response;
-
-}
-
-
-
-
-
-
-
-
-
-
+};
 
 export default function Books() {
-
   const booksData = useLoaderData();
 
   let [searchParams, setSearchParams] = useSearchParams();
@@ -90,14 +75,16 @@ export default function Books() {
   const [searchValue, setSearchValue] = useState(
     searchParams.get("searchValue") || ""
   );
- 
-
 
   const totalBooks = booksData.count;
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchBy, setSearchBy] = useState(searchParams.get("searchBy")||"title");
-  const [booked, SetBooked] = useState(searchParams.get('booking')||"");
-  const [genreOption, setGenreOption] = useState(searchParams.get("genre")||"");
+  const [searchBy, setSearchBy] = useState(
+    searchParams.get("searchBy") || "title"
+  );
+  const [booked, SetBooked] = useState(searchParams.get("booking") || "");
+  const [genreOption, setGenreOption] = useState(
+    searchParams.get("genre") || ""
+  );
   const totalPages = Math.ceil(totalBooks / 8); // 10 books per page
   const handlePageClick = (number) => {
     setCurrentPage(number);
@@ -150,7 +137,6 @@ export default function Books() {
     { id: 10, name: "Economics" },
   ];
 
-
   const handleSearchOptions = useCallback(
     (option) => {
       setSearchBy(option.target.value);
@@ -163,13 +149,9 @@ export default function Books() {
       const updatedSearchParams = new URLSearchParams(searchParams);
       updatedSearchParams.set("booking", option.target.value);
       setSearchParams(updatedSearchParams);
-
-
-
     },
-    [searchParams,setSearchParams]
+    [searchParams, setSearchParams]
   );
-
 
   const handleGenreOption = useCallback(
     (e) => {
@@ -180,10 +162,6 @@ export default function Books() {
     },
     [setSearchParams, setGenreOption, searchParams]
   );
-
-
-
-
 
   return (
     <div>
@@ -228,44 +206,38 @@ export default function Books() {
 
         <div className="isBooked searchBy">
           <div>
-          <label htmlFor="selectInput">Filtters</label>
-          <select
-            id="selectInput"
-            value={booked}
-            defaultValue={booked}
-            onChange={handleIsBookedOptions}
-          >
-            {/* <option value="">--Please choose an option--</option> */}
-            {isBooked.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-
-
-{/* genere */}
-        <div>
-          <select
-            id="selectInput"
-            value={genreOption}
-            defaultValue={genreOption}
-            onChange={handleGenreOption}
-          >
-            {genreOptions.map((option) => (
-              <option key={option.id} value={option.name}>
-                {option.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-
+            <label htmlFor="selectInput">Filtters</label>
+            <select
+              id="selectInput"
+              value={booked}
+              defaultValue={booked}
+              onChange={handleIsBookedOptions}
+            >
+              {/* <option value="">--Please choose an option--</option> */}
+              {isBooked.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
 
-         
+          {/* genere */}
+          <div>
+            <select
+              id="selectInput"
+              value={genreOption}
+              defaultValue={genreOption}
+              onChange={handleGenreOption}
+            >
+              {genreOptions.map((option) => (
+                <option key={option.id} value={option.name}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
 
       <div className="book-card-list">
