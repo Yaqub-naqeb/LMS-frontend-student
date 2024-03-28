@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate, useSubmit } from "react-router-dom";
 import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 
 export const BookLoader = async ({ params }) => {
@@ -16,8 +16,26 @@ export const BookLoader = async ({ params }) => {
 };
 
 const BookDetail = () => {
+  const submit =useSubmit();
   const bookData = useLoaderData();
-  console.log(bookData);
+  const navigate=useNavigate();
+  const submitHandler=()=>{
+
+    const userId=localStorage.getItem('userId')
+
+   userId?
+   submit({
+    userId:userId,
+    bookId:bookData
+   },
+    {
+     method: "POST",
+     action: "/books",
+   }):navigate('/login')
+
+
+
+  }
 
   return (
     <div className="book-detail">
@@ -67,7 +85,7 @@ const BookDetail = () => {
               </p>
             </div>
             <div  className="book-detail__button">
-              <button type="button" className="book-detail__button__btn">Rent</button>
+              <button type="button" className="book-detail__button__btn" onClick={submitHandler}>Booking</button>
             </div>
           </div>
         </div>

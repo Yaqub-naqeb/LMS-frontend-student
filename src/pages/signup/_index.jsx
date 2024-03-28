@@ -48,9 +48,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState();
 
-
-  console.log(response)
-
   useEffect(() => {
     if (response?.id) {
 

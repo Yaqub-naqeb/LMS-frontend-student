@@ -45,7 +45,6 @@ const Login = () => {
 
   const [loginError, setLoginError] = useState();
 
-  console.log(response)
 
 
 
