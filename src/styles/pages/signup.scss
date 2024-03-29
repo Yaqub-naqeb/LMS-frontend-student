@@ -1,17 +1,16 @@
-$primary-color: #303f9f; // Adjust for your desired primary color
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: right; 
+$primary-color: #303f9f;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
 
-.right{
+.right {
   width: 50%;
   padding: 0 2rem;
 }
 .signup-form {
   display: flex;
-
 
   flex-direction: column;
   align-items: center;
@@ -19,16 +18,16 @@ $primary-color: #303f9f; // Adjust for your desired primary color
   gap: 2rem;
   padding: 2rem 0;
   border-radius: 8px;
- 
+
   background-color: rgba(0, 0, 0, 0.805);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Add subtle shadow
-  &__full-name{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  &__full-name {
     display: flex;
     align-items: center;
-  
+
     gap: 1rem;
 
-    .inp{
+    .inp {
       width: 50%;
     }
   }
@@ -42,15 +41,13 @@ $primary-color: #303f9f; // Adjust for your desired primary color
 }
 
 .signup-form__form {
-
   display: flex;
   gap: 1rem;
   flex-direction: column;
   width: 80%;
   color: white;
-  
 }
-.login{
+.login {
   color: white;
 }
 
@@ -59,31 +56,28 @@ $primary-color: #303f9f; // Adjust for your desired primary color
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  gap: .2rem;
-  
+
+  gap: 0.2rem;
 }
 
-
 .signup-form__label {
-  flex: 0 0 25%; // Allocate some width for labels
+  flex: 0 0 25%;
   margin-bottom: 0.5rem;
   font-size: 1rem;
-  text-align: left; // Align labels to the right
+  text-align: left;
 }
 
 .signup-form__input {
-  flex: 1; // Remaining space for input field
+  flex: 1;
   padding: 0.8rem 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
   width: 100%;
-  
 }
 
 .signup-form__submit {
-  padding: .8rem 2rem;
+  padding: 0.8rem 2rem;
   background-color: white;
   color: black;
   font-weight: 800;
@@ -93,11 +87,8 @@ $primary-color: #303f9f; // Adjust for your desired primary color
   cursor: pointer;
   margin-top: 1rem;
   width: 40%;
-  // align-self: center;
-
 }
 
-.signup-form__submit:hover { // Add hover effect for button
+.signup-form__submit:hover {
   background-color: darken($bg-navlink-color, 10%);
-
 }

@@ -52,6 +52,7 @@ export const BookAction = async ({ request }) => {
         },
         book: {
           id: formDataObject.bookId,
+          
         },
         isPending: true,
       }),
@@ -242,9 +243,9 @@ export default function Books() {
 
       <div className="book-card-list">
         {booksData?.results?.map((book) => (
-          <Link key={book.id} to={`http://localhost:5173/books/${book.id}`}>
+          <Link className="link" key={book.id} to={`http://localhost:5173/books/${book.id}`}>
             {" "}
-            <BookCard title={book.title} cover_image={book.cover_image} />
+            <BookCard title={book.title} data={book} cover_image={book.cover_image} />
           </Link>
         ))}
       </div>

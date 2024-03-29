@@ -1,55 +1,78 @@
+.fl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 .book-card {
-    border: 1px solid #ccc;
-    background-color: #C3D1AD;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 200px; /* Set a fixed width for the cards */
-    height: auto; /* Let the height adjust based on content */
+  border-radius: 8px;
+
+  overflow: hidden;
+  width: 270px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  &__inner {
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    transition: all ease .2s;
-    &__inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        box-sizing: border-box; /* Include padding in width calculation */
-    }
+    align-items: center;
 
-    &__image-container {
-        width: 100%;
-        padding-top: 150%; /* Aspect ratio (height/width) */
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
-    }
+    justify-content: center;
 
-    &__image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Maintain aspect ratio while covering the container */
-    }
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  &__author {
+    font-size: 0.8rem;
+    color: #333;
+  }
 
-    &__title {
-        font-size: 18px;
-        color: #333;
-        margin: 10px 0;
-        text-align: center;
-        overflow: hidden; /* Prevent title from overflowing */
-        white-space: nowrap; /* Prevent title from wrapping */
-        text-overflow: ellipsis; /* Show ellipsis for overflowed text */
-    }
+  &__date {
+    font-size: 0.8rem;
+    color: #33333386;
+    align-self: flex-end;
+    justify-self: end;
+    text-align: right;
+  }
 
+  &__image-container {
+    width: 100%;
+    padding-top: 150%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+  }
 
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__cont {
+    align-self: flex-start;
+    width: 100%;
+  }
 
-    &:hover {
-        transition: all ease .2s;
-        transform: translateY(-5px); /* Move the card up slightly on hover */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Add a shadow on hover */
-    }
+  &__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    font-family: Poppins-medium;
+    margin: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    transition: all ease 0.2s;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
 }
