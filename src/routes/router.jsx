@@ -2,7 +2,7 @@ import ErrorPage from "../pages/Error";
 import routes from "./routeDefinations";
 import Root from "../pages/Root";
 import Books, { BookAction } from "../pages/books/_index";
-import Book, {  BookLoader } from '../pages/books/$id'
+import Book, { BookLoader } from "../pages/books/$id";
 import Home from "../pages/home/_index";
 import Login, { loginAction } from "../pages/login/_index";
 import Signup, { signupAction } from "../pages/signup/_index";
@@ -16,44 +16,42 @@ const routesConfig = [
     children: [
       {
         path: routes.root.path,
-        element:<Home />
+        element: <Home />,
       },
       {
         path: routes.books.path,
-        element: (
-          
-            <Books />
-       
-        ),
+        element: <Books />,
         loader: booksLoader,
-        action:BookAction,
-      },{
-        path:'/books/:id',
-        element:(<Book/>),
+        action: BookAction,
+      },
+      {
+        path: "/books/:id",
+        element: <Book />,
         loader: BookLoader,
-       
-      }
-      ,{
+      },
+      {
         path: routes.login.path,
-        element:(
-        <UnAuth>
-        <Login/>
-        </UnAuth>),
-        action:loginAction
+        element: (
+          <UnAuth>
+            <Login />
+          </UnAuth>
+        ),
+        action: loginAction,
       },
       {
         path: routes.signup.path,
-        element:(
+        element: (
           <UnAuth>
-            <Signup/>
+            <Signup />
           </UnAuth>
         ),
-        action:signupAction,
-      },{
-        path:routes.bookings.path,
-        element:<Bookings/>,
+        action: signupAction,
+      },
+      {
+        path: routes.bookings.path,
+        element: <Bookings />,
         loader: bookingLoader,
-      }
+      },
     ],
   },
 ];

@@ -1,5 +1,6 @@
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData, useRevalidator } from "react-router-dom";
 import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
+import deleteBook from "../../api/DataFetcher/delete/deleteBook";
 export const bookingLoader = async ({ request }) => {
   let bookingData = {};
   try {
@@ -12,6 +13,12 @@ export const bookingLoader = async ({ request }) => {
 
 const Bookings = () => {
   const bookingData = useLoaderData();
+  const revalidator = useRevalidator();
+
+  const handleDelete = async (requestedBookId) => {
+    await deleteBook(`http://127.0.0.1:8000/api/booking/${requestedBookId}`);
+    revalidator.revalidate();
+  };
 
   return (
     <div className={"containerr"}>
@@ -41,7 +48,11 @@ const Bookings = () => {
                 </div>
 
                 {booking.isPending && (
-                  <button type="button" className="reject-button">
+                  <button
+                    type="button"
+                    className="reject-button"
+                    onClick={() => handleDelete(booking.id)}
+                  >
                     Reject
                   </button>
                 )}
