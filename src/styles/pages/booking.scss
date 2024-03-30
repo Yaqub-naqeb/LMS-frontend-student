@@ -1,0 +1,139 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
+
+// Colors
+$primary: #4caf50;
+$secondary: #ffffff;
+$accent: #ff5722;
+$text-color: #333;
+
+// General styling
+.containerr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+.booking-container {
+  padding: 2rem;
+  width: 70%;
+}
+
+.booking-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: $text-color;
+}
+
+// Booking card styling
+.booking-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: $secondary;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Responsive layout
+@media (max-width: 768px) {
+  .booking-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-cover {
+    margin-bottom: 10px;
+  }
+
+  .booking-details {
+    width: 100%;
+  }
+}
+
+// Image styling
+.booking-cover {
+  width: 150px;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+// Details styling
+.booking-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-details h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: $text-color;
+}
+
+.booking-details p {
+  font-size: 16px;
+  color: $text-color;
+  margin-bottom: 5px;
+}
+
+.booking-status {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $text-color;
+  margin-top: 5px;
+
+  .fas {
+    margin-right: 5px;
+  }
+
+  &.pending {
+    color: $accent;
+  }
+
+  &.booked {
+    color: $primary;
+  }
+}
+
+.no-bookings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 3rem;
+  margin-top: 50px;
+}
+
+.no-bookings-message {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #919090;
+}
+
+.explore-button {
+  background-color: #404040;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.explore-button:hover {
+  background-color: darken(#404040, 10%);
+}
