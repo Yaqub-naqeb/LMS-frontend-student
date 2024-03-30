@@ -137,3 +137,22 @@ $text-color: #333;
 .explore-button:hover {
   background-color: darken(#404040, 10%);
 }
+
+
+
+.reject-button {
+  background-color: #d32f2f; // Red color
+  color: #fff;
+  padding: 7px 10px;
+  width: 8rem;
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px; // Add margin to separate from other elements
+}
+
+.reject-button:hover {
+  background-color: darken(#d32f2f, 10%);
+}

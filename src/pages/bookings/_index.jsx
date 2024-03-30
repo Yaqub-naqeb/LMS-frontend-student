@@ -39,6 +39,12 @@ const Bookings = () => {
                     Status: {booking.isPending ? "Pending" : "Booked"}
                   </span>
                 </div>
+
+                {booking.isPending && (
+                  <button type="button" className="reject-button">
+                    Reject
+                  </button>
+                )}
               </div>
             </div>
           ))}
