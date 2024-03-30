@@ -8,6 +8,7 @@ import Login, { loginAction } from "../pages/login/_index";
 import Signup, { signupAction } from "../pages/signup/_index";
 import { booksLoader } from "../pages/books/_index";
 import UnAuth from "../components/auth/UnAuth";
+import Protected from '../components/auth/Protected'
 import Bookings, { bookingLoader } from "../pages/bookings/_index";
 const routesConfig = [
   {
@@ -49,7 +50,12 @@ const routesConfig = [
       },
       {
         path: routes.bookings.path,
-        element: <Bookings />,
+
+        element: (
+          <Protected>
+            <Bookings />
+          </Protected>
+        ),
         loader: bookingLoader,
       },
     ],
