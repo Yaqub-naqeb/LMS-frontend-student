@@ -1,11 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import routes from "../routes/routeDefinations";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/auth/context/AuthContext";
 
 const Navbar = () => {
   const { toggleAuth, isAuthenticated } = useContext(AuthContext);
-  const navigate=useNavigate()
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isBookRoute = location.pathname.match(/^\/books\/\d+$/);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("access");
@@ -16,37 +22,47 @@ const Navbar = () => {
     navigate("/login");
   };
   const pages = [
-    { id:1,name: "Home", path: routes.root.path },
-    { id:2,name: "Books", path: routes.books.path },
-    { id:3,name:"Sign Up", path:routes.signup.path },
+    { id: 1, name: "Home", path: routes.root.path },
+    { id: 2, name: "Books", path: routes.books.path },
+    { id: 3, name: "Sign Up", path: routes.signup.path },
 
-    { id:4,name:"Login", path:routes.login.path },
+    { id: 4, name: "Login", path: routes.login.path },
   ];
 
   const pagesForAuth = [
-    { id:1,name: "Home", path: routes.root.path },
-    { id:2,name: "Books", path: routes.books.path },
-    { id:3,name: "Bookings", path: routes.bookings.path },
+    { id: 1, name: "Home", path: routes.root.path },
+    { id: 2, name: "Books", path: routes.books.path },
+    { id: 3, name: "Bookings", path: routes.bookings.path },
 
-    { id:4,name: "Logout", path: 'not available' },
-    { id:5,name:"profile",path:routes.profile.path},
+    { id: 4, name: "Logout", path: "not available" },
+    { id: 5, name: "profile", path: routes.profile.path },
   ];
-  
 
-
-
-const pg=isAuthenticated?pagesForAuth:pages;
-
-
-
+  const pg = isAuthenticated ? pagesForAuth : pages;
 
   return (
     <div>
-      <nav className="navbar">
-        <h1 className="koyaUni">Koya Unversity</h1>
-        <ul className="navbar__list">
+      <nav
+        id={`${
+          location.pathname === "/login" || location.pathname === "/signup"
+            ? "userInAuthh"
+            : ""
+        }`}
+        className={`navbar   ${isBookRoute && "detailPage"} `}
+      >
+        <div className="navbar__container">
+          <h1 className="koyaUni">Koya Unversity</h1>
+          <button type="button" className="menu-button" onClick={toggleMenu}>
+            <i className={isOpen ? "fas fa-times" : "fas fa-bars"} />k
+          </button>
+        </div>
+        <ul className={`navbar__list ${isOpen ? "active" : ""}`}>
           {pg.map((page) => (
-            <li key={page.id} className="navbar__item" onClick={page.name==='Logout'?logout:undefined}>
+            <li
+              key={page.id}
+              className="navbar__item"
+              onClick={page.name === "Logout" ? logout : undefined}
+            >
               <NavLink
                 to={page.path}
                 activeClassName="active"

@@ -7,6 +7,9 @@
 @import "./pages/signup.scss";
 @import "./components/Pagination.scss";
 @import './pages/booking.scss';
+.rt{
+  padding: 8rem 0;
+}
 .userInAuth {
   position: relative;
   height: 100vh;
@@ -17,12 +20,6 @@
     padding: 0.8rem 1rem;
     font-size: 1rem;
     border-radius: $border-radius;
-  }
-  .navbar {
-    padding: 3rem 1rem 5rem 1rem;
-    gap: 23rem;
-    justify-content: space-between;
-    width: 94%;
   }
 }
 

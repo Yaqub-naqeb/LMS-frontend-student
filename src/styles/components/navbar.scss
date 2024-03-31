@@ -1,6 +1,23 @@
+#userInAuthh {
+  background-color: transparent !important;
+  gap: 10rem;
+}
+.detailPage {
+  background-color: transparent !important;
+  background-color: black;
+}
+
 .navbar {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  background-color: white;
+
   padding: 1rem;
   gap: 2rem;
   width: 90%;
@@ -18,14 +35,11 @@
     // margin: auto;
     margin: auto;
 
-   
     .navbar__item {
       margin-right: 1rem;
-   
     }
 
     .navbar__link {
-
       text-decoration: none;
       color: inherit;
       background-color: $bg-navlink-color;
@@ -43,15 +57,100 @@
     margin-left: 1rem;
     position: absolute;
     right: 5px;
-    top: 3rem;
+    top: 1.1rem;
 
     background-color: $bg-text-color;
     padding: 8px 16px;
     border-radius: $border-radius;
     text-decoration: none;
-   
+
     transform: translateX(-1rem);
     color: $text-color;
     font-weight: bold;
+  }
+  // here
+  .menu-button {
+    display: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    i {
+      color: $text-color;
+      font-size: 24px;
+    }
+
+    @media (max-width: 768px) {
+      display: block;
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .login {
+      position: static;
+      margin-top: 1rem;
+      transform: none;
+      margin: 0%;
+    }
+
+    .navbar__list {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar__list {
+    display: none;
+  }
+
+  .navbar__list.active {
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    padding-top: 6rem;
+    gap: 2rem;
+    align-items: center;
+    background-color: white;
+    margin-top: 0rem;
+    font-family: Poppins-bold;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 5rem;
+    left: 0%;
+
+    .navbar__link {
+      text-decoration: none;
+      color: inherit;
+      background-color: transparent;
+      padding: 8px 16px;
+      border-radius: 5px;
+      color: $text-color;
+      font-weight: bold;
+    }
+    .active {
+      background-color: rgba(53, 52, 52, 0.164);
+    }
+    .login {
+      background-color: transparent;
+
+      position: static;
+      margin-top: 1rem;
+      transform: none;
+    }
   }
 }
