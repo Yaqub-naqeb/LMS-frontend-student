@@ -53,7 +53,7 @@ const Navbar = () => {
         <div className="navbar__container">
           <h1 className="koyaUni">Koya Unversity</h1>
           <button type="button" className="menu-button" onClick={toggleMenu}>
-            <i className={isOpen ? "fas fa-times" : "fas fa-bars"} />k
+            <i className={isOpen ? "fas fa-times" : "fas fa-bars"} />
           </button>
         </div>
         <ul className={`navbar__list ${isOpen ? "active" : ""}`}>
