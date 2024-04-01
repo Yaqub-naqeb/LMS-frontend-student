@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import routes from "../routes/routeDefinations";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/auth/context/AuthContext";
-
+import { Turn as Hamburger } from "hamburger-react";
 const Navbar = () => {
   const { toggleAuth, isAuthenticated } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +53,7 @@ const Navbar = () => {
         <div className="navbar__container">
           <h1 className="koyaUni">Koya Unversity</h1>
           <button type="button" className="menu-button" onClick={toggleMenu}>
-            <i className={isOpen ? "fas fa-times" : "fas fa-bars"} />
+            <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} />
           </button>
         </div>
         <ul className={`navbar__list ${isOpen ? "active" : ""}`}>

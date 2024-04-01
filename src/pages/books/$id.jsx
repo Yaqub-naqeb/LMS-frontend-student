@@ -10,9 +10,10 @@ export const BookLoader = async ({ params }) => {
       `http://127.0.0.1:8000/api/books/${params.id}?page_size=10000`
     );
 
-    bookingData = await gettingBooks(
+if(userId){
+   bookingData = await gettingBooks(
       `http://127.0.0.1:8000/api/booking?is_user=${userId}&&book_id=${params.id}`
-    );
+    );}
   } catch (err) {
     console.log(err);
   }
