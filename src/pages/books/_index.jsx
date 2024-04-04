@@ -13,7 +13,7 @@ export const booksLoader = async ({ request }) => {
   const genre = url.searchParams.get("genre");
 
   let booksData = {};
-  try {
+  try {  
     booksData = await gettingBooks(
       `http://127.0.0.1:8000/api/books/?${searchBy ? searchBy : "?"}=${
         searchValue
@@ -28,43 +28,6 @@ export const booksLoader = async ({ request }) => {
   }
 
   return booksData;
-};
-
-export const BookAction = async ({ request }) => {
-  if (request.method !== "POST") return {};
-
-  const formData = await request.formData();
-
-  const formDataObject = Object.fromEntries(formData.entries());
-  let response;
-
-  try {
-    response = await fetch("http://127.0.0.1:8000/api/booking/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({
-        booking_date: null,
-        deadline_date: null,
-        user: {
-          id: formDataObject.userId,
-        },
-        book: {
-          id: formDataObject.bookId,
-        },
-        isPending: true,
-      }),
-    });
-
-    if (response.ok) {
-      response = await response.json();
-    }
-  } catch (err) {
-    console.log("we have an error");
-  }
-
-  return response;
 };
 
 export default function Books() {

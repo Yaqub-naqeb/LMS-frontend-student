@@ -1,8 +1,8 @@
 import ErrorPage from "../pages/Error";
 import routes from "./routeDefinations";
 import Root from "../pages/Root";
-import Books, { BookAction } from "../pages/books/_index";
-import Book, { BookLoader } from "../pages/books/$id";
+import Books from "../pages/books/_index";
+import Book, { BookLoader,BookAction } from "../pages/books/$id";
 import Home from "../pages/home/_index";
 import Login, { loginAction } from "../pages/login/_index";
 import Signup, { signupAction } from "../pages/signup/_index";
@@ -23,12 +23,13 @@ const routesConfig = [
         path: routes.books.path,
         element: <Books />,
         loader: booksLoader,
-        action: BookAction,
+        
       },
       {
         path: "/books/:id",
         element: <Book />,
         loader: BookLoader,
+        action: BookAction,
       },
       {
         path: routes.login.path,

@@ -3,8 +3,11 @@ import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 import deleteBook from "../../api/DataFetcher/delete/deleteBook";
 export const bookingLoader = async ({ request }) => {
   let bookingData = {};
+  const userId = localStorage.getItem("userId");
   try {
-    bookingData = await gettingBooks("http://127.0.0.1:8000/api/booking");
+    bookingData = await gettingBooks(
+      `http://127.0.0.1:8000/api/booking?user_id=${userId}`
+    );
   } catch (err) {
     console.log(err);
   }
@@ -14,6 +17,14 @@ export const bookingLoader = async ({ request }) => {
 const Bookings = () => {
   const bookingData = useLoaderData();
   const revalidator = useRevalidator();
+
+  const calculateRemainingDays = (booking) => {
+    const currentDate = new Date();
+    const deadlineDate = new Date(booking.deadline_date);
+    const remainingTime = deadlineDate.getTime() - currentDate.getTime();
+    const remainingDays = Math.ceil(remainingTime / (1000 * 3600 * 24));
+    return remainingDays;
+  };
 
   const handleDelete = async (requestedBookId) => {
     await deleteBook(`http://127.0.0.1:8000/api/booking/${requestedBookId}`);
@@ -57,6 +68,32 @@ const Bookings = () => {
                   </button>
                 )}
               </div>
+              {booking.isBooked && (
+                <div className="booked-cont">
+                  <p>
+                    {" "}
+                    booking date:{" "}
+                    <span className="date">{booking.booking_date}</span>
+                  </p>
+                  <p>
+                    {" "}
+                    deadline date:{" "}
+                    <span className="date">{booking.deadline_date}</span>
+                  </p>
+
+                  <p
+                    className={`remaining-day ${
+                      calculateRemainingDays(booking) == 1 ? "expired" : ""
+                    } `}
+                  >
+                    <span className="remaining-day-number">
+                      {calculateRemainingDays(booking)}{" "}
+                      {calculateRemainingDays(booking) === 1 ? "day" : "days"}
+                    </span>{" "}
+                    left to return the book.
+                  </p>
+                </div>
+              )}
             </div>
           ))}
         </div>

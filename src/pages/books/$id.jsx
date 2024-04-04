@@ -1,6 +1,43 @@
 import { useLoaderData, useNavigate, useSubmit } from "react-router-dom";
 import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 
+export const BookAction = async ({ request }) => {
+  if (request.method !== "POST") return {};
+
+  const formData = await request.formData();
+
+  const formDataObject = Object.fromEntries(formData.entries());
+  let response;
+
+  try {
+    response = await fetch("http://127.0.0.1:8000/api/booking/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        booking_date: null,
+        deadline_date: null,
+        user: {
+          id: formDataObject.userId,
+        },
+        book: {
+          id: formDataObject.bookId,
+        },
+        isPending: true,
+      }),
+    });
+
+    if (response.ok) {
+      response = await response.json();
+    }
+  } catch (err) {
+    console.log("we have an error");
+  }
+
+  return response;
+};
+
 export const BookLoader = async ({ params }) => {
   let bookData = {};
   let bookingData = {};
@@ -10,10 +47,11 @@ export const BookLoader = async ({ params }) => {
       `http://127.0.0.1:8000/api/books/${params.id}?page_size=10000`
     );
 
-if(userId){
-   bookingData = await gettingBooks(
-      `http://127.0.0.1:8000/api/booking?is_user=${userId}&&book_id=${params.id}`
-    );}
+    if (userId) {
+      bookingData = await gettingBooks(
+        `http://127.0.0.1:8000/api/booking?book_id=${params.id}`
+      );
+    }
   } catch (err) {
     console.log(err);
   }
@@ -24,6 +62,7 @@ if(userId){
 const BookDetail = () => {
   const submit = useSubmit();
   const { bookData, bookingData } = useLoaderData();
+  const userId = localStorage.getItem("userId");
 
   const navigate = useNavigate();
   const submitHandler = () => {
@@ -37,7 +76,7 @@ const BookDetail = () => {
           },
           {
             method: "POST",
-            action: "/books",
+            action: ".",
           }
         )
       : navigate("/login");
@@ -114,13 +153,37 @@ const BookDetail = () => {
               <button
                 type="button"
                 className={`book-detail__button__btn ${
-                  bookingData[0]?.isPending ? "btnn" : ""
+                  bookingData[0]?.isPending || bookingData[0]?.isBooked
+                    ? "btnn"
+                    : ""
                 } `}
                 onClick={submitHandler}
-                disabled={bookingData[0]?.isPending}
+                disabled={bookingData[0]?.isPending || bookingData[0]?.isBooked}
               >
-                {bookingData[0]?.isPending ? "Peding" : "Booking"}
+                {bookingData[0]?.isPending
+                  ? "Peding"
+                  : bookingData[0]?.isBooked
+                  ? "Booked"
+                  : "Booking"}
               </button>
+
+              {bookingData[0]?.isBooked &&
+                bookingData[0]?.user?.id == userId && (
+                  <p>This book is Booked by you </p>
+                )}
+              {bookingData[0]?.isBooked &&
+                bookingData[0]?.user?.id != userId && (
+                  <p>Sorry, This book is Booked by another student </p>
+                )}
+
+              {bookingData[0]?.isPending &&
+                bookingData[0]?.user?.id == userId && (
+                  <p>Your request sent to admin for approval. Thank you.</p>
+                )}
+              {bookingData[0]?.isPending &&
+                bookingData[0]?.user?.id != userId && (
+                  <p>Sorry, this book is requested by another student.</p>
+                )}
             </div>
           </div>
         </div>

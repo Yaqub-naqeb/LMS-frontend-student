@@ -6,6 +6,36 @@ $secondary: #ffffff;
 $accent: #ff5722;
 $text-color: #333;
 
+.booked-cont{
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  gap: .5rem;
+  
+  
+  .date{
+    color: #404040c4;
+
+  }
+}
+
+.remaining-day-number{
+ 
+  font-family: Poppins-bold;
+
+  
+}
+.remaining-day{
+  color: $primary;
+  font-size: .8rem !important;
+  
+}
+.expired{
+  color: $accent !important;
+
+
+}
+
 // General styling
 .containerr {
   display: flex;
