@@ -79,7 +79,7 @@ export default function Books() {
   const options = [
     { value: "title", label: "Title" },
     { value: "author", label: "Author" },
-    { value: "dewey_decimal", label: "Dewey decimal" },
+    // { value: "dewey_decimal", label: "Dewey decimal" },
   ];
 
   const isBooked = [

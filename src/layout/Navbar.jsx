@@ -32,7 +32,7 @@ const Navbar = () => {
   const pagesForAuth = [
     { id: 1, name: "Home", path: routes.root.path },
     { id: 2, name: "Books", path: routes.books.path },
-    { id: 3, name: "Bookings", path: routes.bookings.path },
+    { id: 3, name: "My Bookings", path: routes.bookings.path },
 
     { id: 4, name: "Logout", path: "not available" },
     { id: 5, name: "profile", path: routes.profile.path },
@@ -51,7 +51,7 @@ const Navbar = () => {
         className={`navbar   ${isBookRoute && "detailPage"} `}
       >
         <div className="navbar__container">
-          <h1 className="koyaUni">Koya Unversity</h1>
+          <h1 className="koyaUni">Koya University</h1>
           <button type="button" className="menu-button" onClick={toggleMenu}>
             <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} />
           </button>

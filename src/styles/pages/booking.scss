@@ -129,11 +129,11 @@ $text-color: #333;
     margin-right: 5px;
   }
 
-  &.pending {
-    color: $accent;
+  .pending {
+    color: $accent !important;
   }
 
-  &.booked {
+  .reserved {
     color: $primary;
   }
 }

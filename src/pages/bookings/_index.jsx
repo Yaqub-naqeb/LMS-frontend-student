@@ -47,14 +47,16 @@ const Bookings = () => {
               <div className="booking-details">
                 <h3>{booking.book.title}</h3>
                 <p>by {booking.book.author}</p>
-                <div className="booking-status">
+                <div className={'booking-status  '}>
                   <i
                     className={`fas fa-clock ${
-                      booking.isPending ? "pending" : "booked"
+                      booking.isPending ? "pending" : "reserved"
                     }`}
                   />
-                  <span>
-                    Status: {booking.isPending ? "Pending" : "Booked"}
+                  <span className={`${
+                      booking.isPending ? "pending" : "reserved"
+                    }`}>
+                    Status: {booking.isPending ? "Pending" : "Reserved"}
                   </span>
                 </div>
 
@@ -77,7 +79,7 @@ const Bookings = () => {
                   </p>
                   <p>
                     {" "}
-                    deadline date:{" "}
+                    return date:{" "}
                     <span className="date">{booking.deadline_date}</span>
                   </p>
 

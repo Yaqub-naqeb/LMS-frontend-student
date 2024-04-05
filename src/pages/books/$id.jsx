@@ -161,19 +161,19 @@ const BookDetail = () => {
                 disabled={bookingData[0]?.isPending || bookingData[0]?.isBooked}
               >
                 {bookingData[0]?.isPending
-                  ? "Peding"
+                  ? "Pending"
                   : bookingData[0]?.isBooked
-                  ? "Booked"
-                  : "Booking"}
+                  ? "Reserved"
+                  : "Reservation"}
               </button>
 
               {bookingData[0]?.isBooked &&
                 bookingData[0]?.user?.id == userId && (
-                  <p>This book is Booked by you </p>
+                  <p>This book is Reserved by you </p>
                 )}
               {bookingData[0]?.isBooked &&
                 bookingData[0]?.user?.id != userId && (
-                  <p>Sorry, This book is Booked by another student </p>
+                  <p>Sorry, This book is Reserved by another student </p>
                 )}
 
               {bookingData[0]?.isPending &&
