@@ -7,8 +7,19 @@
 @import "./pages/signup.scss";
 @import "./components/Pagination.scss";
 @import './pages/booking.scss';
+@import './pages/profile.scss';
 .rt{
   padding: 8rem 0;
+}
+
+.bgg {
+  background-color: #404040;
+  height: 100vh;
+  width: 30vw;
+  left: 0%;
+  position: absolute;
+  top: 0%;
+  z-index: -100;
 }
 .userInAuth {
   position: relative;

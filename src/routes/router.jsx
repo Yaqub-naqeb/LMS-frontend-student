@@ -10,6 +10,7 @@ import { booksLoader } from "../pages/books/_index";
 import UnAuth from "../components/auth/UnAuth";
 import Protected from '../components/auth/Protected'
 import Bookings, { bookingLoader } from "../pages/bookings/_index";
+import Profile from "../pages/profile/_index";
 const routesConfig = [
   {
     errorElement: <ErrorPage />,
@@ -59,6 +60,14 @@ const routesConfig = [
         ),
         loader: bookingLoader,
       },
+      {
+        path:routes.profile.path,
+        element: (
+          <Protected>
+            <Profile/>
+          </Protected>
+        )
+      }
     ],
   },
 ];

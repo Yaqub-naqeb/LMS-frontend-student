@@ -33,9 +33,8 @@ const Navbar = () => {
     { id: 1, name: "Home", path: routes.root.path },
     { id: 2, name: "Books", path: routes.books.path },
     { id: 3, name: "My Bookings", path: routes.bookings.path },
-
     { id: 4, name: "Logout", path: "not available" },
-    { id: 5, name: "profile", path: routes.profile.path },
+    { id: 5, name: "Profile", path: routes.profile.path },
   ];
 
   const pg = isAuthenticated ? pagesForAuth : pages;
@@ -48,7 +47,7 @@ const Navbar = () => {
             ? "userInAuthh"
             : ""
         }`}
-        className={`navbar   ${isBookRoute && "detailPage"} `}
+        className={`navbar   ${isBookRoute? "detailPage": location.pathname === "/profile"?'profilePage':'' } `}
       >
         <div className="navbar__container">
           <h1 className="koyaUni">Koya University</h1>
