@@ -1,3 +1,28 @@
+
+// export const profileLoader = async ({ request }) => {
+  
+//   let usersData = {};
+//   try {  
+//     usersData = await gettingBooks(
+//       `http://127.0.0.1:8000/api/books/?${searchBy ? searchBy : "?"}=${
+//         searchValue
+//           ? searchValue
+//           : `&page_size=8&page=${
+//               currentPage ? currentPage : 1
+//             }&is_booked=${booking}&genre=${genre ? genre : ""}`
+//       }`
+//     );
+//   } catch (err) {
+//     console.log(err);
+//   }
+
+//   return usersData;
+// };
+
+
+
+
+import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 import ProfileImage from "../../assets/istockphoto-1337144146-612x612.jpg";
 const Profile = () => {
   return (

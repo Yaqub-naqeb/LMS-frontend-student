@@ -2,6 +2,7 @@ import IntialLayout from "../layout/IntialLayout";
 import Navbar from "../layout/Navbar";
 import AuthContextProvider from "../components/auth/context/AuthContext";
 import { useLocation } from "react-router-dom";
+import { Menu } from "../components/Menu";
 const Root = () => {
   const location = useLocation();
   return (
@@ -15,6 +16,7 @@ const Root = () => {
             : "root-container"
         }`}
       >
+  
         <Navbar />
         <IntialLayout />
       </div>

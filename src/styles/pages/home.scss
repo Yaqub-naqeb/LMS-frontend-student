@@ -1,5 +1,5 @@
 .home {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -7,6 +7,7 @@
   align-items: center;
   color: $text-color;
   font-size: 1rem;
+  transform: translateY(5rem);
 
   .image-container {
   }
