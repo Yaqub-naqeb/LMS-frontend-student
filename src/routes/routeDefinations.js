@@ -8,9 +8,8 @@ const routes = {
   root: {
     path: "/",
   },
-  profile:{
-    path:'/profile'
-
+  profile: {
+    path: "/profile",
   },
   books: {
     path: "/books",
@@ -18,11 +17,8 @@ const routes = {
       path: "/books/:bookId",
     },
   },
-  bookings:{
-    path:"/bookings",
-  
-
-  }
-  
+  bookings: {
+    path: "/bookings",
+  },
 };
 export default routes;

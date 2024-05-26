@@ -1,4 +1,4 @@
-import BookCard from "../../components/buttons/cards/BookCard";
+import BookCard from "../../components/cards/BookCard";
 import { gettingBooks } from "../../api/DataFetcher/BookFetcher";
 import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { useCallback, useState } from "react";
@@ -13,7 +13,7 @@ export const booksLoader = async ({ request }) => {
   const genre = url.searchParams.get("genre");
 
   let booksData = {};
-  try {  
+  try {
     booksData = await gettingBooks(
       `http://127.0.0.1:8000/api/books/?${searchBy ? searchBy : "?"}=${
         searchValue
@@ -205,15 +205,12 @@ export default function Books() {
 
       <div className="book-card-list">
         {booksData?.results?.map((book) => (
-          <Link
-            className="link"
-            key={book.id}
-            to={`http://localhost:5173/books/${book.id}`}
-          >
+          <Link className="link" key={book.id} to={`/books/${book.id}`}>
             {" "}
             <BookCard
               title={book.title}
               data={book}
+              digital_image={book.digital_image}
               cover_image={book.cover_image}
             />
           </Link>

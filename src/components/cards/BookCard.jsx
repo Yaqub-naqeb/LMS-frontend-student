@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const BookCard = ({ cover_image, title, data }) => {
+const BookCard = ({ digital_image,cover_image, title, data }) => {
   return (
     <div className="book-card">
       <div className="book-card__inner">
@@ -7,7 +7,7 @@ const BookCard = ({ cover_image, title, data }) => {
           {" "}
           <img
             className="book-card__image"
-            src={`http://127.0.0.1:8000${cover_image}`}
+            src={digital_image ? digital_image :`http://127.0.0.1:8000${cover_image}`}
             alt="Book Cover"
           />
         </div>
@@ -34,4 +34,5 @@ BookCard.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   cover_image: PropTypes.string.isRequired,
+  digital_image:PropTypes.string
 };

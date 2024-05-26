@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Form ,NavLink,useActionData, useNavigate} from "react-router-dom";
+import { Form, NavLink, useActionData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/auth/context/AuthContext";
-
 
 export const loginAction = async ({ request }) => {
   if (request.method !== "POST") return {};
@@ -34,19 +33,12 @@ export const loginAction = async ({ request }) => {
   return response;
 };
 
-
-
-
-
 const Login = () => {
-  const response=useActionData()
+  const response = useActionData();
   const navigate = useNavigate();
   const { toggleAuth, isAuthenticated } = useContext(AuthContext);
 
   const [loginError, setLoginError] = useState();
-
-
-
 
   useEffect(() => {
     if (response?.id) {
@@ -58,77 +50,58 @@ const Login = () => {
       toggleAuth();
       navigate("/");
     } else {
-   
-        setLoginError("This user does not Exist");
-      
+      setLoginError("This user does not Exist");
     }
     if (response?.error) {
       setLoginError(response?.error);
     }
   }, [response]);
 
-
-  const x=localStorage.getItem("token")
-  console.log(x,isAuthenticated)
-
-
-
-
+  const x = localStorage.getItem("token");
+  console.log(x, isAuthenticated);
 
   return (
     <div className="container">
+      <div className="right">
+        <div className="signup-form ">
+          <h2 className="signup-form__title">Login Form</h2>
+          <Form className="signup-form__form" method="post" action="/login">
+            <div className="signup-form__field">
+              <label className="signup-form__label">Username:</label>
+              <input
+                className="signup-form__input"
+                type="username"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div className="signup-form__field">
+              <label className="signup-form__label">Password:</label>
+              <input
+                className="signup-form__input"
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </div>
 
+            <button className="signup-form__submit" type="submit">
+              Login
+            </button>
 
-
-<div className="right">
-
-<div className="signup-form ">
-    <h2 className="signup-form__title">Login Form</h2>
-    <Form className="signup-form__form" method="post" action="/login">
-     
-      
-      
-      <div className="signup-form__field">
-        <label className="signup-form__label">Username:</label>
-        <input
-          className="signup-form__input"
-          type="username"
-          name="username"
-          placeholder="Username"
-          required
-        />
+            <p>
+              Already have an account?{" "}
+              <NavLink to={"/signup"} className={"login"}>
+                Sign Up
+              </NavLink>
+            </p>
+          </Form>
+        </div>
       </div>
-      <div className="signup-form__field">
-        <label className="signup-form__label">Password:</label>
-        <input
-          className="signup-form__input"
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-      </div>
-     
-    
-      <button className="signup-form__submit" type="submit">Login</button>
-
-      <p>
-      Already have an account? <NavLink to={'/signup'} className={'login'}>Sign Up</NavLink>
-      </p>
-    </Form>
-  
-  </div>
-
-</div>
-
-
-
-
-
     </div>
+  );
+};
 
-  )
-}
-
-export default Login
-
+export default Login;
