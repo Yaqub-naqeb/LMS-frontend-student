@@ -112,6 +112,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/auth/context/AuthContext";
 import { useTranslation } from "react-i18next";
 import { LANGUAGES } from "../constants/languages";
+import Hamburger from "hamburger-react";
 
 const Navbar = () => {
   const { toggleAuth, isAuthenticated } = useContext(AuthContext);
@@ -183,7 +184,7 @@ const Navbar = () => {
         <div className="navbar__container">
           <h1 className="koyaUni">{t("uni")}</h1>
           <button type="button" className="menu-button" onClick={toggleMenu}>
-            {/* <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} /> */}
+            <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} />
           </button>
         </div>
         <ul className={`navbar__list ${isOpen ? "active" : ""}`}>
